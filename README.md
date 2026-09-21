@@ -1,3 +1,7 @@
+# Atualização
+
+O repositório vai ser transferido para o seguinte [Repositório](https://github.com/ASTRID-RESEARCH/SQL-Adversal-Testing). Então o repositório atual vai ficar "Archive", a motivação é que essa ferramenta inicialmente foi construída e produzida como tema de pesquisa de TCC e pretendo evoluir para algo maior, como faço parte de um grupo de pesquisa com foco em segurança que é o ASTRID(Automated Security Testing with Reporting and Intelligent Detection), queremos centralizar todas as ferramentas de segurança produzida por nós em uma só organização.
+
 # SQLi Security Scan
 
 Ferramenta de detecção de vulnerabilidades de SQL Injection em APIs REST utilizando payloads gerados por uma GAN baseada em LSTM.
