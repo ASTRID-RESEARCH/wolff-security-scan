@@ -4,6 +4,69 @@ Ferramenta de detecção de vulnerabilidades de SQL Injection em APIs REST utili
 
 A ferramenta analisa a especificação Swagger/OpenAPI da API alvo, gera payloads de SQL Injection contextualizados para cada endpoint e parâmetro, executa os ataques e classifica os resultados automaticamente.
 
+## Integração com CI/CD
+
+### Uso como GitHub Action
+
+Adicione ao workflow do seu repositório:
+
+```yaml
+- name: Wolff Security Scan GAN
+  id: wolff-report
+  uses: pedroulissespu/wolff-security-scan@v1.0.1
+  with:
+    swagger-url: "docs/swagger.yaml"       # Caminho local ou URL do Swagger
+    base-url: "http://localhost:8000"       # URL da API alvo
+    num-payloads: "200"                     # Payloads por endpoint (padrão: 200)
+    temperature: "0.7"                      # Variação dos payloads (padrão: 0.7)
+    report-path: "reports/scan_report.json" # Caminho do relatório
+    auth-token: ${{ secrets.API_TOKEN }}    # Token de autenticação (opcional)
+    fail-on-vuln: "true"                   # Falhar pipeline se vulnerável (padrão: true)
+```
+
+#### Inputs
+
+| Input | Obrigatório | Padrão | Descrição |
+|-------|-------------|--------|-----------|
+| `swagger-url` | Sim | — | URL ou caminho do arquivo Swagger/OpenAPI |
+| `base-url` | Sim | — | URL base da API alvo |
+| `num-payloads` | Não | `200` | Número de payloads por endpoint |
+| `temperature` | Não | `0.7` | Temperatura da geração (0.1 a 1.0) |
+| `report-path` | Não | `reports/scan_report.json` | Caminho do relatório |
+| `auth-token` | Não | — | Token de autenticação (ex: `Bearer abc123`) |
+| `fail-on-vuln` | Não | `true` | Falhar o pipeline se vulnerabilidades forem detectadas |
+| `python-version` | Não | `3.11` | Versão do Python |
+
+#### Outputs
+
+| Output | Descrição |
+|--------|-----------|
+| `vulnerable` | `true` / `false` |
+| `total-attacks` | Total de payloads enviados |
+| `true-positives` | Número de verdadeiros positivos |
+| `precision` | VP / (VP + FP) |
+| `efficacy` | VP / total de ataques |
+| `execution-time` | Tempo em segundos |
+| `report-path` | Caminho do relatório gerado |
+
+### Integração automática
+
+Quando executado em ambiente GitHub Actions (variável `GITHUB_OUTPUT` presente), o comando `scan` exporta automaticamente as seguintes outputs:
+
+- `vulnerable` — `true` / `false`
+- `total-attacks`
+- `true-positives`
+- `precision`
+- `efficacy`
+- `execution-time`
+- `report-path`
+
+O processo retorna código de saída `1` se vulnerabilidades forem encontradas, permitindo falhar o pipeline automaticamente.
+
+---
+
+> A sessão a seguir é para aqueles que pretendem rodar localmente e/ou possuem interesse em contribuir com o treinamento ou até mesmo encontrar e realizar melhorias na ferramenta, sinta-se a vontade.
+
 ## Requisitos
 
 - Python 3.10+
@@ -200,61 +263,6 @@ Wolff Security Scan GAN/
 
 ---
 
-## Integração com CI/CD
-
-### Uso como GitHub Action
-
-Adicione ao workflow do seu repositório:
-
-```yaml
-- name: Wolff Security Scan GAN
-  id: wolff-report
-  uses: pedroulissespu/wolff-security-scan@v1.0.1
-  with:
-    swagger-url: "docs/swagger.yaml"       # Caminho local ou URL do Swagger
-    base-url: "http://localhost:8000"       # URL da API alvo
-    num-payloads: "200"                     # Payloads por endpoint (padrão: 200)
-    temperature: "0.7"                      # Variação dos payloads (padrão: 0.7)
-    report-path: "reports/scan_report.json" # Caminho do relatório
-    auth-token: ${{ secrets.API_TOKEN }}    # Token de autenticação (opcional)
-    fail-on-vuln: "true"                   # Falhar pipeline se vulnerável (padrão: true)
-```
-
-#### Inputs
-
-| Input | Obrigatório | Padrão | Descrição |
-|-------|-------------|--------|-----------|
-| `swagger-url` | Sim | — | URL ou caminho do arquivo Swagger/OpenAPI |
-| `base-url` | Sim | — | URL base da API alvo |
-| `num-payloads` | Não | `200` | Número de payloads por endpoint |
-| `temperature` | Não | `0.7` | Temperatura da geração (0.1 a 1.0) |
-| `report-path` | Não | `reports/scan_report.json` | Caminho do relatório |
-| `auth-token` | Não | — | Token de autenticação (ex: `Bearer abc123`) |
-| `fail-on-vuln` | Não | `true` | Falhar o pipeline se vulnerabilidades forem detectadas |
-| `python-version` | Não | `3.11` | Versão do Python |
-
-#### Outputs
-
-| Output | Descrição |
-|--------|-----------|
-| `vulnerable` | `true` / `false` |
-| `total-attacks` | Total de payloads enviados |
-| `true-positives` | Número de verdadeiros positivos |
-| `precision` | VP / (VP + FP) |
-| `efficacy` | VP / total de ataques |
-| `execution-time` | Tempo em segundos |
-| `report-path` | Caminho do relatório gerado |
-
-### Integração automática
-
-Quando executado em ambiente GitHub Actions (variável `GITHUB_OUTPUT` presente), o comando `scan` exporta automaticamente as seguintes outputs:
-
-- `vulnerable` — `true` / `false`
-- `total-attacks`
-- `true-positives`
-- `precision`
-- `efficacy`
-- `execution-time`
-- `report-path`
-
-O processo retorna código de saída `1` se vulnerabilidades forem encontradas, permitindo falhar o pipeline automaticamente.
+> Caso queira entrar em contato para falar sobre algo relacionado à ferramenta ou outros assuntos, sinta-se a vontade em me chamar nos seguintes e-mails:\
+**E-mail pessoal**: ```pedro.ulisses2011@gmail.com```\
+**E-mail profissional**: ```pedro.maia@maplink.global```
