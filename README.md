@@ -13,7 +13,7 @@ Adicione ao workflow do seu repositório:
 ```yaml
 - name: Wolff Security Scan GAN
   id: wolff-report
-  uses: pedroulissespu/wolff-security-scan@v1.0.1
+  uses: pedroulissespu/wolff-security-scan@v1.0.0
   with:
     swagger-url: "docs/swagger.yaml"       # Caminho local ou URL do Swagger
     base-url: "http://localhost:8000"       # URL da API alvo
