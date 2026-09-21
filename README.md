@@ -1,8 +1,4 @@
-# Atualização
-
-O repositório vai ser transferido para o seguinte [Repositório](https://github.com/ASTRID-RESEARCH/SQL-Adversal-Testing). Então o repositório atual vai ficar "Archive", a motivação é que essa ferramenta inicialmente foi construída e produzida como tema de pesquisa de TCC e pretendo evoluir para algo maior, como faço parte de um grupo de pesquisa com foco em segurança que é o ASTRID(Automated Security Testing with Reporting and Intelligent Detection), queremos centralizar todas as ferramentas de segurança produzida por nós em uma só organização.
-
-# SQLi Security Scan
+# Wolff Security Scan GAN
 
 Ferramenta de detecção de vulnerabilidades de SQL Injection em APIs REST utilizando payloads gerados por uma GAN baseada em LSTM.
 
@@ -181,7 +177,7 @@ O diretório `datasets/` deve conter arquivos CSV com payloads de SQL Injection.
 ## Estrutura do Projeto
 
 ```
-SQLi Security Scan/
+Wolff Security Scan GAN/
 ├── main.py                  # CLI principal (train / scan)
 ├── requirements.txt         # Dependências Python
 ├── datasets/                # Datasets de SQL Injection
@@ -211,9 +207,9 @@ SQLi Security Scan/
 Adicione ao workflow do seu repositório:
 
 ```yaml
-- name: SQLi Security Scan
-  id: sqli-scan
-  uses: pedroulissespu/sqli-security-scan@v1.0.1
+- name: Wolff Security Scan GAN
+  id: wolff-report
+  uses: pedroulissespu/wolff-security-scan@v1.0.1
   with:
     swagger-url: "docs/swagger.yaml"       # Caminho local ou URL do Swagger
     base-url: "http://localhost:8000"       # URL da API alvo

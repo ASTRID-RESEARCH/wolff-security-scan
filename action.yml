@@ -1,4 +1,4 @@
-name: "SQLi Security Scan"
+name: "Wolff Security Scan GAN"
 description: "Detecta vulnerabilidades de SQL Injection em APIs usando GANs integradas ao Swagger/OpenAPI"
 author: "Pedro Ulisses"
 
@@ -112,7 +112,7 @@ runs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: sqli-scan-report
+        name: wolff-report
         path: ${{ inputs.report-path }}
 
     - name: Verificar vulnerabilidades

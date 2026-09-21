@@ -103,7 +103,8 @@ def cmd_scan(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="SQLi Security Scan - Scan de vulnerabilidades de Injeção SQL Baseada em GANs"
+        # Agradecimentos pela minha esposa por ter sugerido o nome da ferramenta
+        description="Wolff Security Scan GAN - Scan de vulnerabilidades de Injeção SQL Baseada em GANs"
     )
     subparsers = parser.add_subparsers(dest="command", help="Comandos disponíveis")
 
