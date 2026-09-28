@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Wolff Security Scan GAN: SQL Injection Detection in REST APIs with GAN-Generated Payloads"
+abstract: >-
+  Dynamic application security testing (DAST) tool that detects SQL injection
+  vulnerabilities in REST APIs using payloads synthesized by a Generative
+  Adversarial Network with LSTM-based generator and discriminator, guided by
+  the target API's Swagger/OpenAPI specification.
+authors:
+  - given-names: "Pedro Ulisses"
+    family-names: "Maia"
+    email: "pedro.ulisses2011@gmail.com"
+repository-code: "https://github.com/ASTRID-RESEARCH/wolff-security-scan"
+url: "https://github.com/marketplace/actions/wolff-security-scan-gan"
+version: "1.0.2"
+date-released: "2026-09-28"
+keywords:
+  - sql-injection
+  - generative-adversarial-networks
+  - lstm
+  - dast
+  - rest-api
+  - openapi
+  - github-actions
